@@ -1,0 +1,27 @@
+@import 'setup.css';
+
+$baseFont: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+
+
+html {
+  font-size: 62.5%
+}
+
+body {
+  font-size: 1.6rem;
+  line-height: 1.7;
+  font-family: $baseFont;
+  font-weight: 300;
+}
+
+li:at-least(5) {
+
+}
+
+li:at-most(5) {
+
+}
+
+li:between(2,4) {
+	
+ }
