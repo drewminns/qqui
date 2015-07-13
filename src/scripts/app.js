@@ -4,7 +4,8 @@ let QQForm = React.createClass({
 			value: 'atLeast'
 		}
 	},
-	update() {
+	update(e) {
+		e.preventDefault();
 		let theVal = {
 			selector: React.findDOMNode(this.refs.selectorName).value,
 			type: this.state.value,
@@ -28,10 +29,11 @@ let QQForm = React.createClass({
 		}
 		return (
 			<section className="formControl">
-				<form>
+				<h2>Build a query</h2>
+				<form onSubmit={this.update}>
 					<div className="inputRow">
 						<label htmlFor="element" className="inputLabel">Which Element?</label>
-						<input type="text" id="element" autoFocus ref="selectorName" placeholder="ex. ul li" required/>
+						<input type="text" id="element" autoFocus ref="selectorName" placeholder="ex. ul li" required />
 					</div>
 					<div className="inputRow">
 						<label htmlFor="type">Type of Query</label>
@@ -46,7 +48,7 @@ let QQForm = React.createClass({
 						<input type="number" ref="amountOne" required placeholder="Query Amount"/>
 						<input type={isBetween ? 'number' : 'hidden'} ref="amountTwo" required placeholder="Amount Query End"/>
 					</div>
-					<input type="button" onClick={this.update} value="Create Query"/>
+					<input type="submit" className="submit"  value="Create Query"/>
 				</form>
 			</section>
 		);
@@ -81,9 +83,11 @@ let QQExample = React.createClass({
 		return (
 			<div>
 				<style>{this.props.styles}</style>
+				<h2>Try it out</h2>
+				<p>Your quantity query will be reflected on the items below.</p>
 				<header className="controls">
-					<div onClick={this.addItem}><i className="fa fa-plus-circle itemClick"></i> Add Item</div>
-					<div onClick={this.removeItem}><i className="fa fa-minus-circle itemClick"></i> Remove Item</div>
+					<div onClick={this.addItem} className="itemClick"><i className="fa fa-plus-circle "></i> Add Item</div>
+					<div onClick={this.removeItem} className="itemClick"><i className="fa fa-minus-circle"></i> Remove Item</div>
 				</header>
 				<section className="itemList">
 					<ul>
@@ -98,7 +102,7 @@ let QQExample = React.createClass({
 let QQDisplay = React.createClass({
 	render() {
 		let type = this.props.data.type, amountOne = this.props.data.amount.one, amountTwo = this.props.data.amount.two, selector = this.props.data.selector;
-		var pseudo, equation, styles;
+		var pseudo, equation="Build a query on the left to get the code", styles;
 		if (type === 'atLeast') {
 			equation = `${selector}:nth-last-child(n+${amountOne}), ${selector}:nth-last-child(n+${amountOne}) ~ ${selector} { }`;
 			styles = `section.itemList ul>li:nth-last-child(n+${amountOne}), section.itemList ul>li:nth-last-child(n+${amountOne}) ~ li { background: #01B0C5 !important; }`;
@@ -107,11 +111,13 @@ let QQDisplay = React.createClass({
 			styles = `section.itemList ul>li:nth-last-child(-n+${amountOne}):first-child, section.itemList ul>li:nth-last-child(-n+${amountOne}):first-child ~ li { background: #01B0C5 !important;  }`;
 		} else if (type === 'between') {
 			equation = `${selector}:nth-last-child(n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child, ${selector}:nth-last-child(-n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child ~ ${selector} { }`;
-			styles = `section.itemList ul>li:nth-last-child(n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child, section.itemList ul>li:nth-last-child(-n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child ~ li { background: #01B0C5 !important; }`;
+			styles = `section.itemList ul li:nth-last-child(n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child, section.itemList ul li:nth-last-child(n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child ~ li { background: #01B0C5 !important; }`;
 		}
 		return (
 			<div className="displayBody">
-					<section className="">
+					<section className="equationDisplay">
+						<h2>Your Code</h2>
+						<p>Copy and paste the code below into your styles</p>
 						<code>
 							{equation}
 						</code>
@@ -153,10 +159,8 @@ let QQApp = React.createClass({
 	render() {
 		return (
 			<section className="appBody">
-				<div className="wrapper flexParent">
-					<QQForm onUpdate={this.onUpdate} data={this.state.data}/>
-					<QQDisplay data={this.state.data} />
-				</div>
+				<QQForm onUpdate={this.onUpdate} data={this.state.data}/>
+				<QQDisplay data={this.state.data} />
 			</section>
 		);
 	}

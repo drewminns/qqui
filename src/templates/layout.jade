@@ -2,20 +2,36 @@
 html(lang="en")
 	head
 		meta(charset="UTF-8")
-		title Jade Templating Example
+		title Quantity Queries
+		script(src='//use.typekit.net/pvx0vef.js')
+		script.
+				try{Typekit.load();}catch(e){}
 		link(href="styles/style.css", rel='stylesheet')
 		link(href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet")
 	body
 		header.top
-			.wrapper
-				h1 Quantity Queries WTF?
-				p Selecting elements using pure CSS
+			//- .wrapper
+			.logo
+				h1 QQ
+			.details
+				p A tool to help build Quantity Queries for your projects
+			.attrib
+				p By 
+					a(href="http://twitter.com/drewisthe") drewminns
+				a.twitter-share-button(href='https://twitter.com/share', data-text="QQ - a tool to create and test quantity queries", data-via='drewisthe') Tweet
+				script.
+					!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
 		block content
 		script(src="scripts/vendor/react.min.js")
 		script(src="scripts/main.min.js")
-		script(src='//use.typekit.net/pvx0vef.js')
 		script.
-				try{Typekit.load();}catch(e){}
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-62028218-3', 'auto');
+			ga('send', 'pageview');
+		
 
 
 	

@@ -1,6 +1,6 @@
 @import 'setup.css';
 
-$color1: #2F333B;
+$color1: #2B54D0;
 $color2: #1A8896;
 $color3: #01B0C5;
 $color4: #53EBF3;
@@ -93,6 +93,7 @@ body {
   line-height: 1.7;
   font-family: $baseFont;
   font-weight: 300;
+  background: #EAEEF1;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -124,8 +125,8 @@ pre {
   overflow-x: scroll;
 }
 
-h1 { font-size: 5rem }
-h2 { font-size: 1.5rem }
+h1 { font-size: 9rem; letter-spacing: -10px; margin-bottom: 1.5rem; }
+h2 { font-size: 3rem }
 h3 { font-size: 1.25rem }
 h4 { font-size: 1rem }
 h5 { font-size: .875rem }
@@ -133,7 +134,8 @@ h6 { font-size: .75rem }
 
 body {
   color: #111;
-  background-color: #fff;
+  background-color: #EAEEF1;
+  display: flex;
 }
 
 a {
@@ -156,19 +158,54 @@ pre, code {
 }
 
 header.top {
-  background: $color1;
-  padding: 2rem 0 2.8rem;
+  background: linear-gradient(45deg, #354052, #28313D);
   color: white;
+  flex: 1 0 12.5%;
+  position: relative;
+  .logo {
+    background: #4B73EB;
+    display: inline-block;
+    width: 100%;
+    padding: 1.5rem 1.8rem;
+    margin-bottom: 2rem;
+    h1 {
+      margin: 0;
+    }
+  }
+  .details {
+    text-align: center;
+    padding: 1.5rem 1.8rem;
+    p {
+      line-height: 1.6;
+    }
+  }
+  .attrib {
+    padding: 1.5rem 1.8rem;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #28313D;
+    text-align: center;
+    p {
+      text-align: center;
+    }
+  }
 }
 
-section.appBody .flexParent {
+#content {
+  flex: 1 0 87.5%;
+}
+
+section.appBody {
   display: flex;
+  min-height: 100vh;
   .formControl {
-    flex: 1 0 25%;
+    flex: 1 0 30%;
     padding: 1.8rem 2.5rem;
+    background: white;
   }
   .displayBody {
-    flex: 1 0 75%;
+    flex: 1 0 70%;
     padding: 1.8rem 2.5rem;
   }
 }
@@ -181,10 +218,11 @@ section.appBody .flexParent {
     text-transform: uppercase;
     font-family: $headerFont;
     color: #9E9E9E;
+    letter-spacing: 1px;
   }
   input, select {
     display: block;
-    border: 1px solid #9E9E9E;
+    border: 3px solid #D2DAE2;
     padding: 1.3rem;
     width: 100%;
     margin: 1rem 0;
@@ -195,6 +233,62 @@ section.appBody .flexParent {
   select {
     appearance: none;
     position: relative;
+    background: url(../images/Arrow-Down-icon.png);
+    background-size: 25px;
+    background-position: 95% center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+}
+
+input[type=submit].submit {
+  font-size: 1.4rem;
+  background: #354052;
+  text-transform: uppercase;
+  font-family: $headerFont;
+  border: 2px solid #354052;
+  color: white;
+  width: 100%;
+  padding: 1.4rem 0;
+  transition: all 0.3s;
+  letter-spacing: 1px;
+  /*border-radius: 5px;*/
+  &:hover {
+    background: rgba(0,0,0,0.05);
+    border: 2px solid rgba(0,0,0,0.4);
+    color: rgba(0,0,0,0.4);
+  }
+}
+
+section.equationDisplay {
+  margin-top: 2.5rem;
+  padding-bottom: 3.5rem;
+  border-bottom: 1px solid #D2DAE2;
+  code {
+    padding: 5rem 2.5rem;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2); 
+    border: 1px solid rgba(0,0,0,0.2); 
+    background: white;
+    color: #888;
+    display: block;
+    font-weight: 300;
+    font-family: "source-code-pro",sans-serif;
+  }
+}
+
+header.controls {
+  display: flex;
+  .itemClick {
+    display: inline-block;
+    padding: 1.2rem;
+    font-size: 1.2rem;
+    background: #354052;
+    color: white;
+    cursor: pointer;
+    font-family: $headerFont;
+    letter-spacing: 1px;
+    margin-right: 10px;
+    text-transform: uppercase;
   }
 }
 
@@ -205,14 +299,17 @@ section.itemList {
     list-style: none;
     display: flex;
     flex-flow: row wrap;
+    padding: 10px 0;
     li {
-      margin: 10px;
-      width: calc(25% - 20px);
+      margin-right: 10px;
+      margin-bottom: 10px;
+      width: calc(25% - 10px);
       height: 100px;
-      background: $color2;
+      background: #4B73EB;
       transition: all 0.7s;
       border-radius: 3px;
     }
   }
 }
+
 
