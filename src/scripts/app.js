@@ -29,18 +29,24 @@ let QQForm = React.createClass({
 		return (
 			<section className="formControl">
 				<form>
-					<label htmlFor="element">Element Selector</label>
-					<input type="text" id="element" autoFocus ref="selectorName" placeholder={this.props.data.selector} required/>
-					<label htmlFor="type">Type of Selector</label>
-					<select id="type" ref="type" onChange={this.displayAmount} value={this.state.value}>
-						<option value="atLeast">At-Least</option>
-						<option value="atMost">At-Most</option>
-						<option value="between">Between</option>
-					</select>
-					<label for="amount">Amount of Items</label>
-					<input type="number" ref="amountOne" required/>
-					<input type={isBetween ? 'number' : 'hidden'} ref="amountTwo" required/>
-					<input type="button" onClick={this.update} value="Update C2"/>
+					<div className="inputRow">
+						<label htmlFor="element" className="inputLabel">Which Element?</label>
+						<input type="text" id="element" autoFocus ref="selectorName" placeholder="ex. ul li" required/>
+					</div>
+					<div className="inputRow">
+						<label htmlFor="type">Type of Query</label>
+						<select id="type" ref="type" onChange={this.displayAmount} value={this.state.value}>
+							<option value="atLeast">At-Least</option>
+							<option value="atMost">At-Most</option>
+							<option value="between">Between</option>
+						</select>
+					</div>
+					<div className="inputRow">
+						<label for="amount" className="inputLabel">Amount of Items</label>
+						<input type="number" ref="amountOne" required placeholder="Query Amount"/>
+						<input type={isBetween ? 'number' : 'hidden'} ref="amountTwo" required placeholder="Amount Query End"/>
+					</div>
+					<input type="button" onClick={this.update} value="Create Query"/>
 				</form>
 			</section>
 		);
@@ -50,7 +56,7 @@ let QQForm = React.createClass({
 let QQExample = React.createClass({
 	getInitialState() {
 		return {
-			items: ['i']
+			items: ['i', 'i', 'i', 'i', 'i']
 		}
 	},
 	addItem() {
@@ -70,17 +76,19 @@ let QQExample = React.createClass({
 	},
 	render() {
 		let itemObjects = this.state.items.map(function(item) {
-			return <div className="item">item</div>
+			return <li className="item"></li>
 		});
 		return (
 			<div>
 				<style>{this.props.styles}</style>
 				<header className="controls">
-					<div onClick={this.addItem}>Add Item</div>
-					<div onClick={this.removeItem}>Remove Item</div>
+					<div onClick={this.addItem}><i className="fa fa-plus-circle itemClick"></i> Add Item</div>
+					<div onClick={this.removeItem}><i className="fa fa-minus-circle itemClick"></i> Remove Item</div>
 				</header>
-				<section className="exampleItems">
-					{itemObjects}
+				<section className="itemList">
+					<ul>
+						{itemObjects}
+					</ul>
 				</section>
 			</div>
 		)
@@ -93,13 +101,13 @@ let QQDisplay = React.createClass({
 		var pseudo, equation, styles;
 		if (type === 'atLeast') {
 			equation = `${selector}:nth-last-child(n+${amountOne}), ${selector}:nth-last-child(n+${amountOne}) ~ ${selector} { }`;
-			styles = `.item:nth-last-child(n+${amountOne}), .item:nth-last-child(n+${amountOne}) ~ ${selector} { }`;
+			styles = `section.itemList ul>li:nth-last-child(n+${amountOne}), section.itemList ul>li:nth-last-child(n+${amountOne}) ~ li { background: #01B0C5 !important; }`;
 		} else if (type === 'atMost') {
 			equation = `${selector}:nth-last-child(-n+${amountOne}):first-child, ${selector}:nth-last-child(-n+${amountOne}):first-child ~ ${selector} { }`;
-			styles = `.item:nth-last-child(-n+${amountOne}):first-child, .item:nth-last-child(-n+${amountOne}):first-child ~ .item { }`;
+			styles = `section.itemList ul>li:nth-last-child(-n+${amountOne}):first-child, section.itemList ul>li:nth-last-child(-n+${amountOne}):first-child ~ li { background: #01B0C5 !important;  }`;
 		} else if (type === 'between') {
 			equation = `${selector}:nth-last-child(n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child, ${selector}:nth-last-child(-n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child ~ ${selector} { }`;
-			styles = `.item:nth-last-child(n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child, .item:nth-last-child(-n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child ~ .item { }`;
+			styles = `section.itemList ul>li:nth-last-child(n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child, section.itemList ul>li:nth-last-child(-n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child ~ li { background: #01B0C5 !important; }`;
 		}
 		return (
 			<div className="displayBody">
@@ -145,8 +153,10 @@ let QQApp = React.createClass({
 	render() {
 		return (
 			<section className="appBody">
-				<QQForm onUpdate={this.onUpdate} data={this.state.data}/>
-				<QQDisplay data={this.state.data} />
+				<div className="wrapper flexParent">
+					<QQForm onUpdate={this.onUpdate} data={this.state.data}/>
+					<QQDisplay data={this.state.data} />
+				</div>
 			</section>
 		);
 	}

@@ -37,7 +37,10 @@ gulp.task('styles', function () {
 		.pipe($.plumber({
 		  errorHandler: $.notify.onError("Error: <%= error.message %>")
 		}))
+		.pipe($.sourcemaps.init())
 		.pipe($.postcss(processors))
+		.pipe($.minifyCss())
+    .pipe($.sourcemaps.write())
 		.pipe(gulp.dest(paths.distCSS))
 		.pipe(reload({stream:true}));
 });
