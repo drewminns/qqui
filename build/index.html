@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Quantity Queries</title>
     <script src="//use.typekit.net/pvx0vef.js"></script>
     <script>try{Typekit.load();}catch(e){}</script>
@@ -15,13 +16,32 @@
       </div>
       <div class="details">
         <p>A tool to help build Quantity Queries for your projects</p>
+        <p class="explain">What is a quantity query?</p>
       </div>
       <div class="attrib">
-        <p>By <a href="http://twitter.com/drewisthe">drewminns</a></p><a href="https://twitter.com/share" data-text="QQ - a tool to create and test quantity queries" data-via="drewisthe" class="twitter-share-button">Tweet</a>
+        <p>By <a href="http://twitter.com/drewisthe">drewminns</a></p><a href="https://twitter.com/share" data-text="QQ - a tool to create and test quantity queries" data-via="drewisthe" class="twitter-share-button">Share</a>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
       </div>
     </header>
     <div id="content"></div>
+    <div id="lightbox" class="lightbox">
+      <div class="lightboxInner">
+        <div class="closeButton"><i class="fa fa-times"></i></div>
+        <header class="inner">
+          <h2>What are Quantity Queries?</h2>
+        </header>
+        <section class="content">
+          <h3>A quantity query is a CSS selector that allows styles to be applied to elements based on the number of siblings. </h3>
+          <h4>At Least</h4>
+          <p>Styles are applied to all elements when there are <strong>at least</strong> 5 number of items and siblings present.</p><code>.item:nth-last-child(n+5):first-child, .item:nth-last-child(n+5):first-child ~ .item {}</code>
+          <h4>At Most</h4>
+          <p>Styles are applied to all elements when there are <strong>at most</strong>  10 items and siblings present.</p><code>.item:nth-last-child(-n+10):first-child, .item:nth-last-child(-n+10):first-child ~ .item { }</code>
+          <h4>Between</h4>
+          <p>The best of both worlds. Styles are applied when the number of elements is <strong>between</strong> 3 and 5.</p><code>.item:nth-last-child(n+3):nth-last-child(-n+5):first-child, .item:nth-last-child(-n+3):nth-last-child(-n+5):first-child ~ .item { }</code>
+        </section>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="scripts/vendor/react.min.js"></script>
     <script src="scripts/main.min.js"></script>
     <script>
@@ -29,7 +49,7 @@
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-62028218-3', 'auto');
+      ga('create', 'UA-65097717-1', 'auto');
       ga('send', 'pageview');
     </script>
   </body>

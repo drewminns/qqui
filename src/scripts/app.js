@@ -32,21 +32,21 @@ let QQForm = React.createClass({
 				<h2>Build a query</h2>
 				<form onSubmit={this.update}>
 					<div className="inputRow">
-						<label htmlFor="element" className="inputLabel">Which Element?</label>
+						<label htmlFor="element" className="inputLabel">Which element will be counted <span className="hint hint--bottom" data-hint="Provide the elements to be selected in the query">?</span></label>
 						<input type="text" id="element" autoFocus ref="selectorName" placeholder="ex. ul li" required />
 					</div>
 					<div className="inputRow">
-						<label htmlFor="type">Type of Query</label>
+						<label htmlFor="type">Type of Query <span className="hint hint--bottom hint--bounce" data-hint="What kind of query will be used to count the elements">?</span></label>
 						<select id="type" ref="type" onChange={this.displayAmount} value={this.state.value}>
 							<option value="atLeast">At-Least</option>
 							<option value="atMost">At-Most</option>
-							<option value="between">Between</option>
+							<option value="between">At-Least / At-Most</option>
 						</select>
 					</div>
 					<div className="inputRow">
-						<label for="amount" className="inputLabel">Amount of Items</label>
-						<input type="number" ref="amountOne" required placeholder="Query Amount"/>
-						<input type={isBetween ? 'number' : 'hidden'} ref="amountTwo" required placeholder="Amount Query End"/>
+						<label for="amount" className="inputLabel">Amount of Items <span className="hint hint--bottom hint--bounce" data-hint="Items to count">?</span></label>
+						<input type="number" ref="amountOne" required placeholder={isBetween ? 'At least # of items to count' : '# of items to count'}/>
+						<input type={isBetween ? 'number' : 'hidden'} ref="amountTwo" required placeholder="At most # of items to count"/>
 					</div>
 					<input type="submit" className="submit"  value="Create Query"/>
 				</form>
@@ -84,7 +84,7 @@ let QQExample = React.createClass({
 			<div>
 				<style>{this.props.styles}</style>
 				<h2>Try it out</h2>
-				<p>Your quantity query will be reflected on the items below.</p>
+				<p>Your quantity query will be reflected on the items below by a change in colour. Add and remove items to see the styling be applied when the query matches.</p>
 				<header className="controls">
 					<div onClick={this.addItem} className="itemClick"><i className="fa fa-plus-circle "></i> Add Item</div>
 					<div onClick={this.removeItem} className="itemClick"><i className="fa fa-minus-circle"></i> Remove Item</div>
@@ -102,7 +102,7 @@ let QQExample = React.createClass({
 let QQDisplay = React.createClass({
 	render() {
 		let type = this.props.data.type, amountOne = this.props.data.amount.one, amountTwo = this.props.data.amount.two, selector = this.props.data.selector;
-		var pseudo, equation="Build a query on the left to get the code", styles;
+		var pseudo, equation="// Build a query on the left", styles;
 		if (type === 'atLeast') {
 			equation = `${selector}:nth-last-child(n+${amountOne}), ${selector}:nth-last-child(n+${amountOne}) ~ ${selector} { }`;
 			styles = `section.itemList ul>li:nth-last-child(n+${amountOne}), section.itemList ul>li:nth-last-child(n+${amountOne}) ~ li { background: #01B0C5 !important; }`;
@@ -166,4 +166,16 @@ let QQApp = React.createClass({
 	}
 });
 
-React.render(<QQApp />, document.getElementById('content'));
+
+
+$(function() {
+
+	React.render(<QQApp />, document.getElementById('content'));
+	$('p.explain').on('click', function() {
+		console.log('hello')
+		$('#lightbox').addClass('show');
+	});
+	$('.closeButton').on('click', function() {
+		$('#lightbox').removeClass('show');
+	});
+});

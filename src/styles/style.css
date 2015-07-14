@@ -1,4 +1,5 @@
 @import 'setup.css';
+@import 'hint.css';
 
 $color1: #2B54D0;
 $color2: #1A8896;
@@ -94,6 +95,7 @@ body {
   font-family: $baseFont;
   font-weight: 300;
   background: #EAEEF1;
+  position: relative;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -127,8 +129,8 @@ pre {
 
 h1 { font-size: 9rem; letter-spacing: -10px; margin-bottom: 1.5rem; }
 h2 { font-size: 3rem }
-h3 { font-size: 1.25rem }
-h4 { font-size: 1rem }
+h3 { font-size: 2.7rem }
+h4 { font-size: 2.3rem }
 h5 { font-size: .875rem }
 h6 { font-size: .75rem }
 
@@ -136,6 +138,13 @@ body {
   color: #111;
   background-color: #EAEEF1;
   display: flex;
+  flex-flow: row wrap;
+}
+
+@media (max-width: 1024px) {
+  body {
+    display: block;
+  }
 }
 
 a {
@@ -160,7 +169,7 @@ pre, code {
 header.top {
   background: linear-gradient(45deg, #354052, #28313D);
   color: white;
-  flex: 1 0 12.5%;
+  flex: 1 0 180px;
   position: relative;
   .logo {
     background: #4B73EB;
@@ -175,8 +184,21 @@ header.top {
   .details {
     text-align: center;
     padding: 1.5rem 1.8rem;
+    padding-bottom: 125px;
     p {
       line-height: 1.6;
+    }
+    p.explain {
+      display: inline-block;
+      margin-top: 20px;
+      width: 100%;
+      text-transform: uppercase;
+      font-family: $headerFont;
+      padding: 14px 18px;
+      font-size: 1.2rem;
+      line-height: 1.4;
+      background: #4B73EB;
+      cursor: pointer;
     }
   }
   .attrib {
@@ -192,8 +214,20 @@ header.top {
   }
 }
 
+@media (max-width: 1024px) {
+  header.top {
+    width: 100%;
+    .logo {
+      text-align: center;
+    }
+    .details {
+      padding-bottom: 125px;
+    }
+  }
+}
+
 #content {
-  flex: 1 0 87.5%;
+  flex: 1 0 calc(100% - 180px);
 }
 
 section.appBody {
@@ -207,6 +241,13 @@ section.appBody {
   .displayBody {
     flex: 1 0 70%;
     padding: 1.8rem 2.5rem;
+  }
+}
+
+@media only screen 
+  and (max-width: 1024px) {
+  section.appBody {
+    display: block;
   }
 }
 
@@ -239,6 +280,13 @@ section.appBody {
     background-repeat: no-repeat;
     cursor: pointer;
   }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 input[type=submit].submit {
@@ -309,6 +357,109 @@ section.itemList {
       transition: all 0.7s;
       border-radius: 3px;
     }
+  }
+}
+
+@media (max-width: 1024px) {
+  section.itemList ul {
+    display: block;
+    li {
+      float: left;
+    }
+  }
+}
+
+.hint {
+  background: #333;
+  border-radius: 50%;
+  width: 20px;
+  height: 21px;
+  text-align: center;
+  color: white;
+  padding: 0 2px 0 1px;
+  letter-spacing: -1px;
+  &:after {
+    letter-spacing: 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hint {
+    display: none;
+  }
+}
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  .lightboxInner {
+    text-align: center;
+    width: 60%;
+    height: auto;
+    background: white;
+    margin: auto;
+    border-radius: 5px;
+    position: relative;
+    .closeButton {
+      border-radius: 50%;
+      background: white;
+      position: absolute;
+      font-size: 2.8rem;
+      margin: 0;
+      height: 45px;
+      width: 45px;
+      top: -20px;
+      right: -20px;
+      cursor: pointer;
+    }
+    header.inner {
+      background: $color1;
+      padding: 5px 0 10px;
+      color: white;
+      margin-bottom: 15px;
+    }
+    section.content {
+       padding: 1rem 3rem 2rem;
+    }
+    h2 {
+      font-size: 3.5rem;
+    }
+    h3 {
+      margin: 0;
+    }
+    code {
+      display: block;
+      font-size: 1.2rem;
+      text-align: left;
+      width: 90%;
+      margin: 0 auto;
+      padding: 10px;
+      margin-bottom: 25px;
+      box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+    }
+  }
+}
+
+#lightbox.show {
+  display: flex;
+}
+
+@media (max-width: 1024px) {
+  .lightbox {
+    position: absolute;
+    flex-flow: column wrap;
+  }
+  .lightbox .lightboxInner {
+    height: auto;
+    margin: 0 auto;
+    top: 25px;
+    width: 90%;
   }
 }
 
