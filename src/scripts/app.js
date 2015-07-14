@@ -172,7 +172,7 @@ $(function() {
 
 	React.render(<QQApp />, document.getElementById('content'));
 	$('p.explain').on('click', function() {
-		console.log('hello')
+		console.log('I love you - Twitter: @drewisthe ')
 		$('#lightbox').addClass('show');
 	});
 	$('.closeButton').on('click', function() {
