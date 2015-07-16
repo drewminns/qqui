@@ -400,7 +400,7 @@ section.itemList {
   display: none;
   .lightboxInner {
     text-align: center;
-    width: 60%;
+    width: 65%;
     height: auto;
     background: white;
     margin: auto;
@@ -410,12 +410,12 @@ section.itemList {
       border-radius: 50%;
       background: white;
       position: absolute;
-      font-size: 2.8rem;
+      font-size: 2.2rem;
       margin: 0;
-      height: 45px;
-      width: 45px;
-      top: -20px;
-      right: -20px;
+      height: 35px;
+      width: 35px;
+      top: -10px;
+      right: -10px;
       cursor: pointer;
     }
     header.inner {
@@ -428,20 +428,27 @@ section.itemList {
        padding: 1rem 3rem 2rem;
     }
     h2 {
-      font-size: 3.5rem;
+      font-size: 3rem;
     }
     h3 {
+      font-size: 2rem;
       margin: 0;
+    }
+    h4 {
+      font-size: 1.8rem;
     }
     code {
       display: block;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       text-align: left;
       width: 90%;
       margin: 0 auto;
       padding: 10px;
       margin-bottom: 25px;
       box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+    }
+    p {
+      line-height: 1.4;
     }
   }
 }

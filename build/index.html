@@ -39,13 +39,15 @@
           <h2>What are Quantity Queries?</h2>
         </header>
         <section class="content">
-          <h3>A quantity query is a CSS selector that allows styles to be applied to elements based on the number of siblings. </h3>
+          <p>A quantity query is a complex CSS selector that allows styles to be applied to elements based on the number of siblings. </p>
           <h4>At Least</h4>
           <p>Styles are applied to all elements when there are <strong>at least</strong> 5 number of items and siblings present.</p><code>.item:nth-last-child(n+5):first-child, .item:nth-last-child(n+5):first-child ~ .item {}</code>
           <h4>At Most</h4>
           <p>Styles are applied to all elements when there are <strong>at most</strong>  10 items and siblings present.</p><code>.item:nth-last-child(-n+10):first-child, .item:nth-last-child(-n+10):first-child ~ .item { }</code>
           <h4>Between</h4>
           <p>The best of both worlds. Styles are applied when the number of elements is <strong>between</strong> 3 and 5.</p><code>.item:nth-last-child(n+3):nth-last-child(-n+5):first-child, .item:nth-last-child(-n+3):nth-last-child(-n+5):first-child ~ .item { }</code>
+          <h3>Need more?</h3>
+          <p>	Quantity Queries are getting some traction in the industry. This site was developed as a companion piece to my article on <a href="http://www.smashingmagazine.com/2015/07/14/quantity-ordering-with-css/">Smashing Magazine</a>. The article and this site could not have been possible however without the help and thoughts of <a href="http://www.heydonworks.com/">Heydon Pickering</a> and his article on <a href="http://alistapart.com/article/quantity-queries-for-css">A List Apart</a>.</p>
         </section>
       </div>
     </div>
