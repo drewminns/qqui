@@ -400,7 +400,7 @@ section.itemList {
   display: none;
   .lightboxInner {
     text-align: center;
-    width: 65%;
+    width: 80%;
     height: auto;
     background: white;
     margin: auto;
