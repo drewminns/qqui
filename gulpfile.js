@@ -91,6 +91,6 @@ gulp.task('images', function () {
 	return gulp.src(paths.srcI + '*')
 		.pipe($.imagemin())
 		.pipe(gulp.dest(paths.distI));
-})
+});
 
 gulp.task('default', ['styles', 'templates', 'scripts', 'images', 'browser-sync','watch']);

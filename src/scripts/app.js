@@ -105,13 +105,13 @@ let QQDisplay = React.createClass({
 		var pseudo, equation="// Build a query on the left", styles;
 		if (type === 'atLeast') {
 			equation = `${selector}:nth-last-child(n+${amountOne}), ${selector}:nth-last-child(n+${amountOne}) ~ ${selector} { }`;
-			styles = `section.itemList ul>li:nth-last-child(n+${amountOne}), section.itemList ul>li:nth-last-child(n+${amountOne}) ~ li { background: #01B0C5 !important; }`;
+			styles = `section.itemList ul>li:nth-last-child(n+${amountOne}), section.itemList ul>li:nth-last-child(n+${amountOne}) ~ li { background: #D81B60 !important; }`;
 		} else if (type === 'atMost') {
 			equation = `${selector}:nth-last-child(-n+${amountOne}):first-child, ${selector}:nth-last-child(-n+${amountOne}):first-child ~ ${selector} { }`;
-			styles = `section.itemList ul>li:nth-last-child(-n+${amountOne}):first-child, section.itemList ul>li:nth-last-child(-n+${amountOne}):first-child ~ li { background: #01B0C5 !important;  }`;
+			styles = `section.itemList ul>li:nth-last-child(-n+${amountOne}):first-child, section.itemList ul>li:nth-last-child(-n+${amountOne}):first-child ~ li { background: #D81B60 !important;  }`;
 		} else if (type === 'between') {
 			equation = `${selector}:nth-last-child(n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child, ${selector}:nth-last-child(-n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child ~ ${selector} { }`;
-			styles = `section.itemList ul li:nth-last-child(n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child, section.itemList ul li:nth-last-child(n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child ~ li { background: #01B0C5 !important; }`;
+			styles = `section.itemList ul li:nth-last-child(n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child, section.itemList ul li:nth-last-child(n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child ~ li { background: #D81B60 !important; }`;
 		}
 		return (
 			<div className="displayBody">
