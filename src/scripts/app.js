@@ -170,9 +170,11 @@ let QQApp = React.createClass({
 
 $(function() {
 
+	console.log('What\'s it built with? React, Babel and PostCSS! Help me improve or fix any issues! https://github.com/drewminns/qqui');
+	console.log('Follow me on Twitter: @drewisthe');
+	console.log('Find more crazy cool things at drewminns.com');
 	React.render(<QQApp />, document.getElementById('content'));
 	$('p.explain').on('click', function() {
-		console.log('I love you - Twitter: @drewisthe ')
 		$('#lightbox').addClass('show');
 	});
 	$('.closeButton').on('click', function() {
