@@ -101,7 +101,7 @@ let QQExample = React.createClass({
 
 let QQDisplay = React.createClass({
 	render() {
-		let type = this.props.data.type, amountOne = this.props.data.amount.one, amountTwo = this.props.data.amount.two, selector = this.props.data.selector;
+		let type = this.props.data.type, amountOne = this.props.data.amount.one, amountTwo = this.props.data.amount.two, selector = this.props.data.selector.split(' ').slice(-1)[0];
 		var pseudo, equation="// Build a query on the left", styles;
 		if (type === 'atLeast') {
 			equation = `${selector}:nth-last-child(n+${amountOne}), ${selector}:nth-last-child(n+${amountOne}) ~ ${selector} { }`;
