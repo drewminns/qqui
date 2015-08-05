@@ -101,7 +101,7 @@ let QQExample = React.createClass({
 
 let QQDisplay = React.createClass({
 	render() {
-		let type = this.props.data.type, amountOne = this.props.data.amount.one, amountTwo = this.props.data.amount.two, selector = this.props.data.selector.split(' ').slice(-1)[0];
+		let type = this.props.data.type, amountOne = this.props.data.amount.one, amountTwo = this.props.data.amount.two, selector = this.props.data.selector;
 		var pseudo, equation="// Build a query on the left", styles;
 		if (type === 'atLeast') {
 			equation = `${selector}:nth-last-child(n+${amountOne}), ${selector}:nth-last-child(n+${amountOne}) ~ ${selector} { }`;
@@ -110,7 +110,7 @@ let QQDisplay = React.createClass({
 			equation = `${selector}:nth-last-child(-n+${amountOne}):first-child, ${selector}:nth-last-child(-n+${amountOne}):first-child ~ ${selector} { }`;
 			styles = `section.itemList ul>li:nth-last-child(-n+${amountOne}):first-child, section.itemList ul>li:nth-last-child(-n+${amountOne}):first-child ~ li { background: #D81B60 !important;  }`;
 		} else if (type === 'between') {
-			equation = `${selector}:nth-last-child(n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child, ${selector}:nth-last-child(-n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child ~ ${selector} { }`;
+			equation = `${selector}:nth-last-child(n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child, ${selector}:nth-last-child(n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child ~ ${selector} { }`;
 			styles = `section.itemList ul li:nth-last-child(n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child, section.itemList ul li:nth-last-child(n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child ~ li { background: #D81B60 !important; }`;
 		}
 		return (
