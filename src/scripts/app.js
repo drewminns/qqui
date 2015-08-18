@@ -101,16 +101,16 @@ let QQExample = React.createClass({
 
 let QQDisplay = React.createClass({
 	render() {
-		let type = this.props.data.type, amountOne = this.props.data.amount.one, amountTwo = this.props.data.amount.two, selector = this.props.data.selector;
+		let type = this.props.data.type, amountOne = this.props.data.amount.one, amountTwo = this.props.data.amount.two, selector = this.props.data.selector, selectTail = selector.split(" ").splice(-1)[0];
 		var pseudo, equation="// Build a query on the left", styles;
 		if (type === 'atLeast') {
-			equation = `${selector}:nth-last-child(n+${amountOne}), ${selector}:nth-last-child(n+${amountOne}) ~ ${selector} { }`;
+			equation = `${selector}:nth-last-child(n+${amountOne}), ${selector}:nth-last-child(n+${amountOne}) ~ ${selectTail} { }`;
 			styles = `section.itemList ul>li:nth-last-child(n+${amountOne}), section.itemList ul>li:nth-last-child(n+${amountOne}) ~ li { background: #D81B60 !important; }`;
 		} else if (type === 'atMost') {
-			equation = `${selector}:nth-last-child(-n+${amountOne}):first-child, ${selector}:nth-last-child(-n+${amountOne}):first-child ~ ${selector} { }`;
+			equation = `${selector}:nth-last-child(-n+${amountOne}):first-child, ${selector}:nth-last-child(-n+${amountOne}):first-child ~ ${selectTail} { }`;
 			styles = `section.itemList ul>li:nth-last-child(-n+${amountOne}):first-child, section.itemList ul>li:nth-last-child(-n+${amountOne}):first-child ~ li { background: #D81B60 !important;  }`;
 		} else if (type === 'between') {
-			equation = `${selector}:nth-last-child(n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child, ${selector}:nth-last-child(n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child ~ ${selector} { }`;
+			equation = `${selector}:nth-last-child(n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child, ${selector}:nth-last-child(n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child ~ ${selectTail} { }`;
 			styles = `section.itemList ul li:nth-last-child(n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child, section.itemList ul li:nth-last-child(n+${amountOne}):nth-last-child(-n+${amountTwo}):first-child ~ li { background: #D81B60 !important; }`;
 		}
 		return (
